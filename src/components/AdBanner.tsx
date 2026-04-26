@@ -3,20 +3,15 @@
 import { useEffect, useState } from "react";
 
 export function AdBanner({ dataAdSlot, className }: { dataAdSlot?: string, className?: string }) {
-  const [clientId, setClientId] = useState<string | null>(null);
+  const clientId = "ca-pub-6602882672663191";
 
   useEffect(() => {
-    // Busca a env de client_id definida na build
-    const envClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
-    if (envClientId) {
-      setClientId(envClientId);
-      try {
-        // Inicializa o AdSense
-        // @ts-ignore
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      } catch (err) {
-        console.error("AdSense error:", err);
-      }
+    try {
+      // Inicializa o AdSense
+      // @ts-ignore
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (err) {
+      console.error("AdSense error:", err);
     }
   }, []);
 
